@@ -4,23 +4,34 @@ Note: Every person is a "user" with a role of: staff (medical professionals), pa
 *Enter login information
 *User must then be redirected to login
 *User completes profile and saves it.  
-Parent sign-up form
-    #### User object, send:
+
+##Get Parent api/parents/:id
+    #### Parent object returns:
     {
-        username: *required* (string), 
-        role: *required* (values can be: staff, parent, or child), 
-        email: *required* , 
-        password: *required* , 
-        firstName: *required* , 
-        lastName: *required*, 
-        address1: *required*,
-        address2: , 
-        zip: *required*, 
-        state: *required*, 
-        city: *required*, 
-        phone: *required*, 
-        comments: 
+        username: "somone123", 
+        email: "someone@gmail.com" , 
+        password: "49bndkge939nvkdlss9s938fj", 
+        firstName: "mary" , 
+        lastName: "Johnson", 
+        address1: "123 Baker St.", 
+        address2: "apt 104", 
+        zip: "89103",   
+        state: "NV", 
+        city: "Las Vegas",  
+        phone: "(702) 208-9232",  
+        comments: "some comments here"
     }
 
-    returns id of user
+    
 
+## Get Child Object By Id api/child/:id
+    #### Child Object
+    {
+        firstName: "baby", 
+        lastName: "johnson", 
+        parentId: 1, 
+        isPermission: false,
+        comments: "comments go here", 
+        DOB: "2019-02-31" *yyyy-mm-dd*,
+        parentId: 1
+    }

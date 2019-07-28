@@ -1,5 +1,6 @@
 
-//TODO Migrate:latest to add Unique constraint to username
+//TODO Migrate:latest to add Unique constraint to username, added
+//Cascade constraint to child_detail table
 
 exports.up = function(knex) {
     return knex.schema 
@@ -37,7 +38,7 @@ exports.up = function(knex) {
         tbl.text('comments', 255)
         tbl.bigInteger('parentId')
         tbl.date('DOB').notNullable()  
-        tbl.foreign('parentId').references('id').inTable('parent_detail')
+        tbl.foreign('parentId').references('id').inTable('parent_detail').onDelete('CASCADE') 
         tbl.bigInteger('providerId').unsigned()
         tbl.foreign('providerId').references('id').inTable('providers')
         })
