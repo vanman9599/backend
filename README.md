@@ -25,7 +25,7 @@ Note: Every person is a "user" with a role of: staff (medical professionals), pa
     
 
 ## Get Child Object By Id api/child/:id
-    #### Child Object
+    #### Returns Single Child Object
     {
         firstName: "baby", 
         lastName: "johnson", 
@@ -33,5 +33,30 @@ Note: Every person is a "user" with a role of: staff (medical professionals), pa
         isPermission: false,
         comments: "comments go here", 
         DOB: "2019-02-31" *yyyy-mm-dd*,
-        parentId: 1
     }
+
+## GET All Children of Parent api/parents/:id
+#### Returns Array of Child Objects
+    [
+        {
+            firstName: "baby", 
+            lastName: "johnson", 
+            parentId: 1, 
+            isPermission: false,
+            comments: "comments go here", 
+            DOB: "2019-02-31" *yyyy-mm-dd*,
+            providerName: "Magical Pediatricians", 
+            gender: "male"
+            
+        }
+        {
+            firstName: "maria", 
+            lastName: "johnson", 
+            parentId: 1, 
+            isPermission: true,
+            comments: "comments go here", 
+            DOB: "2019-02-31" *yyyy-mm-dd*,
+            providerName: "Magical Pediatricians", 
+            
+        }
+    ]

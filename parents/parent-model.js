@@ -6,6 +6,7 @@ module.exports = {
  findById,
  remove, 
  removeUser,
+ findChildren,
 }
 // {
 //     username: "somone123" *required* (string), 
@@ -36,6 +37,22 @@ function findById(id){
         }
     })
 }
+// firstName: "baby", 
+// lastName: "johnson", 
+// parentId: 1, 
+// isPermission: false,
+// comments: "comments go here", 
+// DOB: "2019-02-31" *yyyy-mm-dd*,
+
+function findChildren(id){
+    //send in parentId as id
+    return db('child_detail as cd')
+    .where({ parentId: id })
+    .join('parent_detail as pd', 'cd.parentId', '=', 'pd.id')
+    .join('providers as p', 'p.id', '=', 'cd.providerid')
+    .select('p.name as providerName', 'cd.firstName', 'cd.lastName', 'cd.isPermission', 'cd.comments', 'cd.DOB')
+}
+
 
 function remove(id){
     return db('parent_detail')
