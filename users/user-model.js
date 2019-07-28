@@ -5,6 +5,7 @@ module.exports = {
   find,
   findBy,
   findById,
+  insertUser
 };
 
 function find(role) {
@@ -30,4 +31,16 @@ function findById(id) {
   return db('users')
     .where({ id })
     .first();
+}
+
+function insertUser(user){
+  return db('users')
+  .insert(user)
+  .then(user =>{
+    if(user){
+      return user;
+    }else{
+      return null;
+    }
+  })
 }

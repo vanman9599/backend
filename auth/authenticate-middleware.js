@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs'); /// <<<<<< install it and require it
 
-const Users = require('../users/users-model.js');
+const Users = require('../users/user-model.js');
 
 module.exports = authenticate;
 

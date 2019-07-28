@@ -34,7 +34,7 @@ exports.up = function(knex) {
         tbl.boolean('isPermission')  
         tbl.text('comments', 255)
         tbl.bigInteger('parentId')
-        tbl.date('DOB').notNullable()
+        tbl.date('DOB').notNullable()  
         tbl.foreign('parentId').references('id').inTable('parent_detail')
         tbl.bigInteger('providerId').unsigned()
         tbl.foreign('providerId').references('id').inTable('providers')
