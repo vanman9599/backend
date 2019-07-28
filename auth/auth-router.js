@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const Users = require('../users/user-model.js');
 const secrets = require('../config/secrets.js');
-const authenticate  = require('./authenticate-middleware.js')
+
 
 // for endpoints beginning with /api/auth
 router.post('/register', (req, res) => {
@@ -21,10 +21,10 @@ router.post('/register', (req, res) => {
     });
 });
 
-router.post('/login', authenticate, (req, res) => {
+router.post('/login', (req, res) => {
   let { username, password } = req.body;
 
-  Users.findBy({ username })
+  Users.findBy({ username: username })
     .first()
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
@@ -48,7 +48,7 @@ function generateToken(user) {
   const jwtPayload = {
     subject: user.id,
     username: user.username,
-    department: user.department,
+    role: user.role,
   };
 
   const jwtOptions = {

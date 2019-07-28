@@ -1,9 +1,11 @@
 
+//TODO Migrate:latest to add Unique constraint to username
+
 exports.up = function(knex) {
     return knex.schema 
     .createTable('users', tbl => {
         tbl.increments()
-        tbl.text('username', 128) 
+        tbl.text('username', 128).notNullable().unique()
         tbl.text('password', 256)
         tbl.text('email', 128)
         tbl.text('role', 128).notNullable() // parent | staff
