@@ -8,15 +8,44 @@ module.exports = {
  remove, 
  findAll,
  findById,
+ findImmunizationsByAge,
+ findImmunizationsTaken,
+ findMissingImmunizations
  
  
+}
+
+function findImmunizationsTaken(childId){
+    return db('child_immunizations')
+    .where({ childId: childId })
+    .innerJoin('immunizations', 'child_immunizations.ImmunizationId', 'immunizations.id' )
+    .orderBy('immunizations.monthsAge', 'child_immunizations.dose')
+}
+
+// select distinct i.name, i.monthsAge from immunizations i, child_immunizations ci
+// where ci.childId = 1
+// AND i.id NOT IN (select immunizationId from child_immunizations)
+
+function findMissingImmunizations(childId){
+    return db('child_immunizations as ci')
+    .where({ childId: childId})
+    .whereNotIn('immunizations.id' ,function(){
+            this.select('immunizationId').from('child_immunizations')
+        })
+    
+}
+
+function findImmunizationsByAge(){
+    return db('immunizations')
+    .orderBy([{ column: 'monthsAge' },{ column: 'name'} ])
+    
 }
 
 function findChildImmunizations(id){
     return db('child_immunizations')
     .where({ childId: id })
     .innerJoin('immunizations', 'child_immunizations.immunizationId', 'immunizations.id')
-    .select('immunizations.name', 'child_immunizations.dateReceived', 'child_immunizations.location', 'child_immunizations.childId', 'child_immunizations.immunizationId', 'immunizations.name', 'immunizations.monthsAge', 'immunizations.description')
+    .select('immunizations.name', 'immunizations.description', 'child_immunizations.dateReceived', 'child_immunizations.location', 'child_immunizations.childId', 'child_immunizations.immunizationId', 'immunizations.name', 'immunizations.monthsAge', 'immunizations.description')
     .then(immunizations => {
         if(immunizations){
             return immunizations;

@@ -19,6 +19,23 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.get('/age', async (req, res) => {
+    
+    try{
+        const immun = await Immunizations.findImmunizationsByAge();
+
+        if(immun){
+            res.json(immun);
+        }else{
+            res.status(404).json({ message: 'Could not find immunizations'})
+        }
+
+    }catch(err){
+        
+        res.status(500).json({ message: 'failed to get immunizations'})
+    }
+})
+
 //get immunizatios for each child
 router.get('/child/:id', async (req, res) => {
     const { id } = req.params;
@@ -29,6 +46,41 @@ router.get('/child/:id', async (req, res) => {
             res.json(immunizations);
         }else{
             res.status(404).json({ message: 'Could not find childen with given id'})
+        }
+
+    }catch(err){
+        console.log("error", err)
+        res.status(500).json({ message: 'failed to get children'})
+    }
+})
+//find all taken immunizations for a given child
+router.get('/taken/:id', async (req, res) => {
+    const { id } = req.params;
+    try{
+        const immunizations = await Immunizations.findImmunizationsTaken(id);
+
+        if(immunizations){ 
+            res.json(immunizations);
+        }else{
+            res.status(404).json({ message: 'Could not find any immuninzations for this child'})
+        }
+
+    }catch(err){
+        console.log("error", err)
+        res.status(500).json({ message: 'failed to get children'})
+    }
+})
+
+
+router.get('/missing/:id', async (req, res) => {
+    const { id } = req.params;
+    try{
+        const immunizations = await Immunizations.findMissingImmunizations(id);
+
+        if(immunizations){ 
+            res.json(immunizations);
+        }else{
+            res.status(404).json({ message: 'Could not find any immuninzations for this child'})
         }
 
     }catch(err){

@@ -26,9 +26,9 @@ function findById(id){
     return db('parent_detail as pd')
     .where({ userId: id })
     .join('users as u','pd.userId', '=', 'u.id' )
-    .select('u.username', 'u.email', 'u.id as userId', 'pd.firstName', 
+    .select('u.username', 'u.email', 'pd.firstName', 
             'pd.lastName', 'pd.address1','pd.address2',  'pd.zip', 
-            'pd.state', 'pd.city', 'pd.phone', 'pd   .comments as comments')
+            'pd.state', 'pd.city', 'pd.phone', 'pd.comments', 'pd.userId')
     .then(parent => {
         if(parent){
             return parent;
@@ -50,7 +50,7 @@ function findChildren(id){
     .where({ parentId: id })
     .join('parent_detail as pd', 'cd.parentId', '=', 'pd.id')
     .join('providers as p', 'p.id', '=', 'cd.providerid')
-    .select('p.name as providerName', 'cd.firstName', 'cd.lastName', 'cd.isPermission', 'cd.comments', 'cd.DOB')
+    .select('p.name as providerName', 'cd.firstName', 'cd.lastName', 'cd.isPermission', 'cd.comments', 'cd.DOB', 'cd.gender')
 }
 
 

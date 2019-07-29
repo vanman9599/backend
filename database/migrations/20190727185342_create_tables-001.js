@@ -16,6 +16,12 @@ exports.up = function(knex) {
     .createTable('providers', tbl => {
         tbl.increments() 
         tbl.text('name', 255).notNullable()
+        tbl.text('address1', 128)
+        tbl.text('address2', 128)
+        tbl.text('city', 128)
+        tbl.text('state', 2)
+        tbl.text('zip', 128)
+        tbl.text('phone', 128)
     })
 
     .createTable('immunizations', tbl => {
@@ -23,6 +29,7 @@ exports.up = function(knex) {
         tbl.text('name', 255).notNullable()
         tbl.integer('monthsAge')
         tbl.text('description', 255)
+        tbl.integer('dose').notNullable()
     })
 
     .createTable('parent_detail', tbl => {
@@ -49,6 +56,7 @@ exports.up = function(knex) {
         tbl.text('comments', 255)
         tbl.bigInteger('parentId')
         tbl.date('DOB').notNullable()  
+        tbl.text('gender').notNullable()
         tbl.bigInteger('providerId').unsigned()
         
         })

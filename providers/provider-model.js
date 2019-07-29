@@ -76,6 +76,7 @@ function insertStaff(staff){
     })
 }
 
+
 function findStaffById(id){
     return db('staff_detail')
     .where({ userId: id })
