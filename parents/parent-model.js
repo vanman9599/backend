@@ -25,7 +25,7 @@ module.exports = {
 function findById(id){
     return db('parent_detail as pd')
     .where({ userId: id })
-    .join('users as u', 'u.id', '=', 'pd.userId')
+    .join('users as u','pd.userId', '=', 'u.id' )
     .select('u.username', 'u.email', 'u.id as userId', 'pd.firstName', 
             'pd.lastName', 'pd.address1','pd.address2',  'pd.zip', 
             'pd.state', 'pd.city', 'pd.phone', 'pd   .comments as comments')

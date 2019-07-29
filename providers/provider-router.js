@@ -14,9 +14,29 @@ router.get('/:id', async (req, res) => {
         }
 
     }catch(err){
-        res.status(500).json({ message: 'failed to get provider'})
+        
+        res.status(500).json({ message: 'failed to get child'})
     }
 })
+
+// //send in parentId to get array of children of parent
+// router.get('/children/:id', async (req, res) => {
+//     const { id } = req.params;
+//     try{
+//         const children = await Parents.findChildren(id);
+
+//         if(children){
+//             res.json(children);
+//         }else{
+//             res.status(404).json({ message: 'Could not find childen with given id'})
+//         }
+
+//     }catch(err){
+        
+//         res.status(500).json({ message: 'failed to get children'})
+//     }
+// })
+
 router.post('/', async (req,res) => {
     const data = req.body;
     
@@ -26,7 +46,7 @@ router.post('/', async (req,res) => {
     }catch(err){
         console.log('data', data);
         console.log("error", err);
-        res.status(500).json({ message: "Failed to create profile"})
+        res.status(500).json({ message: "Failed to create provider"})
     }
 })
 
@@ -51,7 +71,7 @@ router.delete('/:id', async (req, res) => {
     try{
         const deleted = await Providers.remove(id);
         if(deleted){
-            res.json({ removed: deleted })
+          res.json({ removed: deleted })
         }else{
             res.status(404).json({ message: 'Could not find provider with given id'})
         }

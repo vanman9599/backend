@@ -19,7 +19,8 @@ Note: Every person is a "user" with a role of: staff (medical professionals), pa
         state: "NV", 
         city: "Las Vegas",  
         phone: "(702) 208-9232",  
-        comments: "some comments here"
+        comments: "some comments here",
+        userId: 2
     }
 
     

@@ -25,7 +25,7 @@ router.get('/children/:id', async (req, res) => {
     try{
         const children = await Parents.findChildren(id);
 
-        if(children){
+        if(children){ 
             res.json(children);
         }else{
             res.status(404).json({ message: 'Could not find childen with given id'})

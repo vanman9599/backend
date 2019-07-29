@@ -11,9 +11,20 @@ exports.up = function(knex) {
         tbl.text('email', 128)
         tbl.text('role', 128).notNullable() // parent | staff
         
-        
-
     })
+
+    .createTable('providers', tbl => {
+        tbl.increments() 
+        tbl.text('name', 255).notNullable()
+    })
+
+    .createTable('immunizations', tbl => {
+        tbl.increments()
+        tbl.text('name', 255).notNullable()
+        tbl.integer('monthsAge')
+        tbl.text('description', 255)
+    })
+
     .createTable('parent_detail', tbl => {
         tbl.increments()
         tbl.text('firstName', 128).notNullable()
@@ -26,7 +37,7 @@ exports.up = function(knex) {
         tbl.text('phone', 128)
         tbl.text('comments', 255)
         tbl.bigInteger('userId').unsigned()
-        tbl.foreign('userId').references('id').inTable('users')
+        
         
   })
 
@@ -38,9 +49,8 @@ exports.up = function(knex) {
         tbl.text('comments', 255)
         tbl.bigInteger('parentId')
         tbl.date('DOB').notNullable()  
-        tbl.foreign('parentId').references('id').inTable('parent_detail').onDelete('CASCADE') 
         tbl.bigInteger('providerId').unsigned()
-        tbl.foreign('providerId').references('id').inTable('providers')
+        
         })
 
     .createTable('staff_detail', tbl => {
@@ -50,29 +60,19 @@ exports.up = function(knex) {
         tbl.text('comments', 255)
         tbl.bigInteger('userId').unsigned()
         tbl.text('title', 128)
-        tbl.foreign('userId').references('id').inTable('users')
         tbl.bigInteger('providerId')
-        tbl.foreign('providerId').references('id').inTable('providers')
+        
         
     })
 
-    .createTable('providers', tbl => {
-        tbl.increments()
-        tbl.text('name', 255).notNullable()
-    })
-
-    .createTable('immunizations', tbl => {
-        tbl.increments()
-        tbl.text('name', 255).notNullable()
-        tbl.integer('monthsAge')
-        tbl.text('description', 255)
-    })
+  
     .createTable('child_immunizations', tbl => {
         tbl.increments()
         tbl.date('dateReceived')
         tbl.text('location', 128)
-        tbl.bigInteger('childId')
-        tbl.foreign('childId').references('id').inTable('child_detail')
+        tbl.bigInteger('childId').notNullable()
+        tbl.bigInteger('immunizationId').notNullable()
+        
         
     })
 
@@ -82,11 +82,12 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
     return knex.schema 
+    
     .dropTableIfExists('users')
-    .dropTableIfExists('parent_detail')
+    .dropTableIfExists('providers')
     .dropTableIfExists('child_detail')
     .dropTableIfExists('staff_detail')
-    .dropTableIfExists('providers')
     .dropTableIfExists('immunizations')
     .dropTableIfExists('child_immunizations')
+    .dropTableIfExists('parent_detail')
 };

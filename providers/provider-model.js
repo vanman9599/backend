@@ -8,7 +8,9 @@ module.exports = {
  insertStaff,
  findStaffById,
  removeStaff,
- updateStaff
+ updateStaff, 
+ removeUser,
+ 
 }
 
 function findById(id){
@@ -88,7 +90,7 @@ function findStaffById(id){
 
 function removeStaff(id){
     return db('staff_detail')
-    .where({  id })
+    .where({  userId: id })
     .del()
     .then(num => {
        if(num){
@@ -109,5 +111,19 @@ function updateStaff(changes, id){
         }else{
             return null;
         }
+    })
+}
+
+function removeUser(id){
+    return db('users')
+    .where({ id })
+    .del()
+    .then(num => {
+        if(num){
+            return num;
+        }else{
+            return null;
+        }
+
     })
 }

@@ -5,7 +5,7 @@ const router = express.Router();
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
     try{
-        const staff = await Staff.findStaffById(id);
+        const staff = await Staff.findStaffByProviderId(id);
 
         if(staff){
             res.json(staff);
@@ -51,7 +51,9 @@ router.delete('/:id', async (req, res) => {
     try{
         const deleted = await Staff.removeStaff(id);
         if(deleted){
-            res.json({ removed: deleted })
+            
+                const deletedUser = await Staff.removeUser(id)
+                res.json({ removed: deletedUser})
         }else{
             res.status(404).json({ message: 'Could not find user with given id'})
         }
