@@ -22,7 +22,7 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-  let { username, password } = req.body;
+  let { username, password, userId } = req.body;
 
   Users.findBy({ username: username })
     .first()
@@ -34,6 +34,7 @@ router.post('/login', (req, res) => {
         res.status(200).json({
           message: `Welcome ${user.username}!`,
           token,
+          userId: userId
         });
       } else {
         res.status(401).json({ message: 'Invalid Username/Password  ' });
