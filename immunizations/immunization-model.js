@@ -37,7 +37,7 @@ function findMissingImmunizations(childId){
 
 function findImmunizationsByAge(){
     return db('immunizations')
-    .orderBy([{ column: 'monthsAge' },{ column: 'name'} ])
+    .orderBy([{ column: 'name'}])
     
 }
 
@@ -45,7 +45,7 @@ function findChildImmunizations(id){
     return db('child_immunizations')
     .where({ childId: id })
     .innerJoin('immunizations', 'child_immunizations.immunizationId', 'immunizations.id')
-    .select('immunizations.name', 'immunizations.description', 'child_immunizations.dateReceived', 'child_immunizations.location', 'child_immunizations.childId', 'child_immunizations.immunizationId', 'immunizations.name', 'immunizations.monthsAge', 'immunizations.description')
+    .select('immunizations.name', 'immunizations.description', 'child_immunizations.dateReceived', 'child_immunizations.location', 'child_immunizations.childId', 'child_immunizations.immunizationId')
     .then(immunizations => {
         if(immunizations){
             return immunizations;
