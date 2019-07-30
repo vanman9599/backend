@@ -92,9 +92,18 @@ function insert(parent){
         }
     })
 }
-function update(changes, id){
+
+//sends
+
+function getParentId(userId){
     return db('parent_detail')
-    .where({ userId: id })
+    .where({ userId: userId })
+    .select('id')
+}
+function update(changes, id){
+    parentId = getParentId(id);
+    return db('parent_detail')
+    .where({ userId: parentId })
     .update(changes)
     .then(parent => {
         if(parent){

@@ -15,7 +15,7 @@ https://immunization-tracker-van.herokuapp.com
 }
 *you will get back:*
 {
-  "id": 5,
+  "id": 5,   
   "username": "Larry",
   "password": "$2a$10$wA008k.kYW2ozv61DJ1reuyZZ7X835M6xLLnpqjBvXOt03Y/cSUyy", 
   "email": "larry@hotmail.com",
@@ -33,5 +33,25 @@ _save the id to use later_
 
 {
   "message": "Welcome Larry!",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0Ijo1LCJ1c2VybmFtZSI6IkxhcnJ5Iiwicm9sZSI6InBhcmVudCIsImlhdCI6MTU2NDQ0NTkzMiwiZXhwIjoxNTY0NTMyMzMyfQ.AypJIQOozTqzcTWWyWY9Ye1o3QZCxDLokvF6gElBo7M"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0Ijo1LCJ1c2VybmFtZSI6Im1hcnR5IiwiaWF0IjoxNTY0NDQ4NzI5LCJleHAiOjE1NjQ1MzUxMjl9.0Lwmc6zVClA16DVm-FE4wMKmEfENGosLWF679eexp3g",
+  "userId": 5,
+  "role": "parent"
+}
+- store role and userId and pass it around, you will need it to make other api calls
+
+### /api/parents/
+
+*to insert parent profile, send:*
+
+{
+	"userId": 5, 
+	"firstName": "Larry", 
+	"lastName": "Johnson", 
+	"address1": "456 Someplace St", 
+	"address2": "Apt 102", 
+	"city": "Las Vegas", 
+	"zip": "89103", 
+	"state": "NV", 
+	"phone": "(702) 123-3456",
+	"comments": "Not a required field"
 }
