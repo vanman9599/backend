@@ -50,7 +50,7 @@ function findChildren(id){
     .where({ parentId: id })
     .join('parent_detail as pd', 'cd.parentId', '=', 'pd.id')
     .join('providers as p', 'p.id', '=', 'cd.providerid')
-    .select('p.name as providerName', 'cd.firstName', 'cd.lastName', 'cd.isPermission', 'cd.comments', 'cd.DOB', 'cd.gender', 'c.id as childId', 'cd.parentId')
+    .select('p.name as providerName', 'cd.firstName', 'cd.lastName', 'cd.isPermission', 'cd.comments', 'cd.DOB', 'cd.gender', 'cd.id', 'cd.parentId')
 }
 
 
