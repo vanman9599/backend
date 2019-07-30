@@ -40,7 +40,7 @@ function remove(id){
 
 function insert(provider){
     return db('providers')
-    .insert(provider)
+    .insert(provider, 'id')
     .then(prt => {
         if(prt){
             return prt;

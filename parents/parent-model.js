@@ -83,7 +83,7 @@ function removeUser(id){
 
 function insert(parent){
     return db('parent_detail')
-    .insert(parent)
+    .insert(parent, 'id')
     .then(prt => {
         if(prt){
             return prt;
