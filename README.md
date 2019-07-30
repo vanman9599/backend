@@ -1,11 +1,14 @@
 # backend
 
-# The base URL
+### The base URL
 https://immunization-tracker-van.herokuapp.com
 
 #endpoints
 
-### /api/auth/register
+-- 
+### POST (REGISTER) 
+#### /api/auth/register
+
 *send:* 
 {
 	"username": "Larry", 
@@ -23,7 +26,8 @@ https://immunization-tracker-van.herokuapp.com
 }
 _save the id to use later_
 
-### api/auth/login
+### POST (LOGIN)
+#### api/auth/login
 *send:*
 {
 	"username": "Larry", 
@@ -39,7 +43,8 @@ _save the id to use later_
 }
 - store role and userId and pass it around, you will need it to make other api calls
 
-### /api/parents/
+### POST A PARENT (INSERT)
+#### /api/parents/
 
 *to insert parent profile, send:*
 
@@ -55,3 +60,13 @@ _save the id to use later_
 	"phone": "(702) 123-3456",
 	"comments": "Not a required field"
 }
+
+
+### UDPATE
+#### /api/parents/1
+*to update parent, issue a put (update) request and pass in the userId in the URL*
+
+
+### GET PARENT BY UserId
+#### api/parents/1 
+*returns a complete Parent Object*

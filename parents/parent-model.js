@@ -53,8 +53,14 @@ function findChildren(id){
     .select('p.name as providerName', 'cd.firstName', 'cd.lastName', 'cd.isPermission', 'cd.comments', 'cd.DOB', 'cd.gender')
 }
 
-
+function removeUser(id){
+    return db('users')
+    .where({ id: id })
+    .del()
+    
+}
 function remove(id){
+    removeUser(id);
     return db('parent_detail')
     .where({ userId: id })
     .del()
