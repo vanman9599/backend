@@ -17,12 +17,12 @@ server.use(express.json());
 server.use(cors());
 
 server.use('/api/auth', authRouter);
-server.use('/api/users', restricted, usersRouter);
-server.use('/api/parents', restricted, parentsRouter);
-server.use('/api/providers', restricted, providerRouter);
-server.use('/api/children', restricted, childRouter);
-server.use('/api/staff', restricted, staffRouter);
-server.use('/api/immunizations', restricted, immunizationRouter)
+server.use('/api/users', usersRouter);
+server.use('/api/parents', parentsRouter);
+server.use('/api/providers', providerRouter);
+server.use('/api/children', childRouter);
+server.use('/api/staff', staffRouter);
+server.use('/api/immunizations', immunizationRouter)
 server.get('/', (req, res) => {
   res.send("Immunization Tracker API");
 });

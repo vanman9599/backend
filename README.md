@@ -136,3 +136,20 @@ can help with this one*
 *pass in 1 above as userId*
 
 
+### GET Immunizations CHild has Taken
+#### /api/immunizations/taken/1
+*where 1 above is childId*
+
+### Get All Immunizaions CHild has not taken
+### /api/immunizations/missing/1
+*where 1 above is childId*
+ 
+### INSERT a immunization a child has taken
+#### /api/immunizations/insert
+{
+	"location": "a Clinic", 
+	"childId": 3, 
+	"immunizationId": 4, 
+	"dateReceived": "2019-01-21"
+
+}
