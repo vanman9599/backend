@@ -1,63 +1,37 @@
 # backend
-Note: Every person is a "user" with a role of: staff (medical professionals), parent, or child.  
-**Sign up is a 3 step process:**
-*Enter login information
-*User must then be redirected to login
-*User completes profile and saves it.  
 
-##Get Parent api/parents/:id
-    #### Parent object returns:
-    {
-        username: "somone123", 
-        email: "someone@gmail.com" , 
-        password: "49bndkge939nvkdlss9s938fj", 
-        firstName: "mary" , 
-        lastName: "Johnson", 
-        address1: "123 Baker St.", 
-        address2: "apt 104", 
-        zip: "89103",   
-        state: "NV", 
-        city: "Las Vegas",  
-        phone: "(702) 208-9232",  
-        comments: "some comments here",
-        userId: 2
-    }
+# The base URL
+https://immunization-tracker-van.herokuapp.com
 
-    
+#endpoints
 
-## Get Child Object By Id api/child/:id
-    #### Returns Single Child Object
-    {
-        firstName: "baby", 
-        lastName: "johnson", 
-        parentId: 1, 
-        isPermission: false,
-        comments: "comments go here", 
-        DOB: "2019-02-31" *yyyy-mm-dd*,
-    }
+### /api/auth/register
+*send:* 
+{
+	"username": "Larry", 
+	"password": "pass", 
+	"email": "larry@hotmail.com", 
+	"role": "parent"
+}
+*you will get back:*
+{
+  "id": 5,
+  "username": "Larry",
+  "password": "$2a$10$wA008k.kYW2ozv61DJ1reuyZZ7X835M6xLLnpqjBvXOt03Y/cSUyy", 
+  "email": "larry@hotmail.com",
+  "role": "parent"
+}
+_save the id to use later_
 
-## GET All Children of Parent api/parents/:id
-#### Returns Array of Child Objects
-    [
-        {
-            firstName: "baby", 
-            lastName: "johnson", 
-            parentId: 1, 
-            isPermission: false,
-            comments: "comments go here", 
-            DOB: "2019-02-31" *yyyy-mm-dd*,
-            providerName: "Magical Pediatricians", 
-            gender: "male"
-            
-        }
-        {
-            firstName: "maria", 
-            lastName: "johnson", 
-            parentId: 1, 
-            isPermission: true,
-            comments: "comments go here", 
-            DOB: "2019-02-31" *yyyy-mm-dd*,
-            providerName: "Magical Pediatricians", 
-            
-        }
-    ]
+### api/auth/login
+*send:*
+{
+	"username": "Larry", 
+	"password": "pass"
+}
+*you will get back:*
+
+{
+  "message": "Welcome Larry!",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0Ijo1LCJ1c2VybmFtZSI6IkxhcnJ5Iiwicm9sZSI6InBhcmVudCIsImlhdCI6MTU2NDQ0NTkzMiwiZXhwIjoxNTY0NTMyMzMyfQ.AypJIQOozTqzcTWWyWY9Ye1o3QZCxDLokvF6gElBo7M"
+}

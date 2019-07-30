@@ -8,7 +8,6 @@ module.exports = {
  remove, 
  findAll,
  findById,
- findImmunizationsByAge,
  findImmunizationsTaken,
  findMissingImmunizations
  
@@ -35,9 +34,9 @@ function findMissingImmunizations(childId){
     
 }
 
-function findImmunizationsByAge(){
+function findImmunizations(){
     return db('immunizations')
-    .orderBy([{ column: 'name'}])
+    
     
 }
 
