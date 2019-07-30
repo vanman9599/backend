@@ -68,5 +68,34 @@ _save the id to use later_
 
 
 ### GET PARENT BY UserId
-#### api/parents/1 
+#### /api/parents/1 
 *returns a complete Parent Object*
+
+### DELETE PARENT
+#### /api/parents/2
+*returns the number of records removed which should always be 1*
+
+
+### POST (ADD) Provider
+#### /api/providers
+*send this object*
+ {
+	"name": "Clinic of Las vegas", 
+	"address1": "4938 W. Tropicana Blvd",
+	"address2": "Suite 108", 
+	 "city": "Las Vegas", 
+	"state": "NV", 
+	"zip": "89103", 
+	"phone": "(800) 724-1982"
+}
+*returns the providerId*
+
+
+### UPDATE Provider
+#### /api/providers/1
+*the 1 above is the providerId need to pass in*
+
+
+### DELETE Provider
+#### /api/providers/4
+*where 4 is the providerId*
