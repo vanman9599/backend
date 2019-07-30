@@ -9,7 +9,8 @@ module.exports = {
  findAll,
  findById,
  findImmunizationsTaken,
- findMissingImmunizations
+ findMissingImmunizations, 
+ getAllImmunizationIds
  
  
 }
@@ -25,12 +26,16 @@ function findImmunizationsTaken(childId){
 // where ci.childId = 1
 // AND i.id NOT IN (select immunizationId from child_immunizations)
 
-function findMissingImmunizations(childId){
-    return db('child_immunizations as ci')
-    .where({ childId: childId})
-    .whereNotIn('immunizations.id' ,function(){
-            this.select('immunizationId').from('child_immunizations')
-        })
+function getAllImmunizationIds(id){
+    return db('child_immunizations')
+    .where( { id: id }).select('id')
+}
+
+function findMissingImmunizations(id){
+    const query = getAllImmunizationIds(id);
+    return db('immunizations')
+    .whereNotIn('id', query)
+    
     
 }
 
@@ -57,7 +62,7 @@ function findChildImmunizations(id){
 
 function insert(immunization){
     return db('immunizations')
-    .insert(immunization)
+    .insert(immunization, 'id')
     .then(immun => {
         if(immun){
             return immun;

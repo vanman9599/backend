@@ -127,3 +127,12 @@ can help with this one*
 	"parentId": 2,  <-- pass in userId here
 	"providerId": 2 
 }
+
+### UPDATE Child
+#### /api/children/1
+
+### GET ALL CHildren belonging to a parent
+#### /api/parents/children/1
+*pass in 1 above as userId*
+
+
