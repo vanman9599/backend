@@ -1,4 +1,4 @@
-
+/** 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
   return knex('immunization_schedule').del()
@@ -45,3 +45,5 @@ exports.seed = function(knex) {
       ]);
     });
 };
+
+*/
