@@ -10,7 +10,8 @@ module.exports = {
  findById,
  findImmunizationsTaken,
  findMissingImmunizations, 
- getAllImmunizationIds
+ getAllImmunizationIds, 
+ insertImmunization
  
  
 }
@@ -125,29 +126,14 @@ function remove(id){
     })
 }
 
-function updateStaff(changes, id){
-    return db('staff_detail')
-    .where({ id })
-    .update(changes)
-    .then(staff => {
-        if(staff){
-            return staff;
+function insertImmunization(immunization){
+    return db('child_immunizations')
+    .insert(immunization, 'id')
+    .then(immun => {
+        if(immun){
+            return immun;
         }else{
             return null;
         }
     })
 }
-
-function removeUser(id){
-    return db('users')
-    .where({ id })
-    .del()
-    .then(num => {
-        if(num){
-            return num;
-        }else{
-            return null;
-        }
-
-    })
-} 
