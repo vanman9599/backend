@@ -44,7 +44,7 @@ function findImmunizations(){
     
     
 }
-
+ 
 function findChildImmunizations(id){
     return db('child_immunizations')
     .where({ childId: id })
