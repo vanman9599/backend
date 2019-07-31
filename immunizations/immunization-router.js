@@ -164,6 +164,7 @@ router.delete('/childImmunizations/:id', async (req, res) => {
             
        
     }catch(err){
+        console.log(err);
         res.status(500).json({ message: 'failed to delete'})
     }
 })

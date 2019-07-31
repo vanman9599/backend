@@ -11,7 +11,8 @@ module.exports = {
  findImmunizationsTaken,
  findMissingImmunizations, 
  getAllImmunizationIds, 
- insertImmunization
+ insertImmunization, 
+ removeChildImmunizations,
  
  
 }
@@ -49,7 +50,7 @@ function findImmunizations(){
 function findChildImmunizations(id){
     return db('child_immunizations')
     .where({ childId: id })
-    .innerJoin('immunizations', 'child_immunizations.immunizationId', 'immunizations.id')
+    .join('immunizations', 'child_immunizations.immunizationId', '=', 'immunizations.id')
     .select('immunizations.name', 'immunizations.description', 'child_immunizations.dateReceived', 'child_immunizations.location', 'child_immunizations.childId', 'child_immunizations.immunizationId', 'immunizations.dose', 'immunizations.monthsAge')
     .then(immunizations => {
         if(immunizations){
