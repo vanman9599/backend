@@ -153,3 +153,12 @@ can help with this one*
 	"dateReceived": "2019-01-21"
 
 }
+### UPDATE User account
+#### /api/users/1
+{
+	"email": "user@gmail.com", 
+	"username": "someone123", 
+    "role": "parent" 
+}
+
+### D

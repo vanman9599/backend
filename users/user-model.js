@@ -6,7 +6,8 @@ module.exports = {
   findBy,
   findById,
   insertUser, 
-  update
+  update, 
+  remove
 };
 
 function find(role) {
@@ -57,5 +58,18 @@ function update(changes, id){
       }else{
           return null;
       }
+  })
+}
+
+function remove(id){
+  return db('users')
+  .where({  id })
+  .del()
+  .then(num => {
+     if(num){
+         return num;
+     }else{
+         return null;
+     }
   })
 }
