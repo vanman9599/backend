@@ -161,4 +161,6 @@ can help with this one*
     "role": "parent" 
 }
 
-### D
+### DELETE USER account
+#### /api/users/1
+*you will get back the number of records deleted, should always be 1*

@@ -10,12 +10,27 @@ module.exports = {
  removeStaff,
  updateStaff, 
  removeUser,
+ getProvidersChildren,
  
 }
 
 function findById(id){
     return db('providers')
     .where({ id })
+    .then(provider => {
+        if(provider){
+            return provider;
+        }else{
+            return null;
+        }
+    })
+}
+
+function getProvidersChildren(id){
+    return db('providers as p')
+    .where({ id })
+    .join('child_detail as cd', 'p.id', '=', 'cd.providerId')
+    .select('cd.firstName', 'cd.lastName', 'cd.DOB', 'cd.gender', 'cd.isPermission', 'cd.id', 'cd.comments')
     .then(provider => {
         if(provider){
             return provider;
