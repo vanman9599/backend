@@ -100,6 +100,7 @@ function getParentId(userId){
     .where({ userId: userId })
     .select('id')
 }
+
 function update(changes, id){
     parentId = getParentId(id);
     return db('parent_detail')
