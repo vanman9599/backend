@@ -17,10 +17,10 @@ module.exports = {
  
 }
 
-function findImmunizationsTaken(childId){
+function findImmunizationsTaken(id){
     return db('child_immunizations')
-    .where({ childId: childId })
-    .innerJoin('immunizations', 'child_immunizations.ImmunizationId', 'immunizations.id' )
+    .where({ childId: id })
+    .join('immunizations', 'child_immunizations.ImmunizationId', '=', 'immunizations.id' )
     .orderBy('immunizations.monthsAge', 'child_immunizations.dose')
 }
 
