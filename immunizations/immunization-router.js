@@ -151,4 +151,21 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
+router.delete('/childImmunizations/:id', async (req, res) => {
+    const { id } = req.params;
+    try{
+        const deleted = await Immunizations.removeChildImmunizations(id);
+        if(deleted){
+           
+                res.json({ removed: deleted })
+            }else{
+                res.status(500).json({ message: 'failed to delele immunization '})
+            }
+            
+       
+    }catch(err){
+        res.status(500).json({ message: 'failed to delete'})
+    }
+})
+
 module.exports = router;

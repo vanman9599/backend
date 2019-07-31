@@ -100,6 +100,11 @@ _save the id to use later_
 #### /api/providers/4
 *where 4 is the providerId*
 
+### GET All Children of a Provider
+/api/providers/children/2
+*where 2 above is providerId*
+*this is what is supposed to show up on providers homepage?*
+
 ### INSERT STAFF (a user who who represents a provider)
 #### api/staff
 

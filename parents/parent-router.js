@@ -42,6 +42,7 @@ router.post('/', async (req,res) => {
     
     try{
         const parent = await Parents.insert(data);
+        
         res.status(201).json(parent)
     }catch(err){
         console.log('data', data);

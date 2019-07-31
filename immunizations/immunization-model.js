@@ -126,6 +126,18 @@ function remove(id){
     })
 }
 
+function removeChildImmunizations(id){
+    return db('child_immunizations')
+    .where({ childId: id })
+    .del()
+    .then(num=>{
+        if(num){
+            return num;
+        }else{
+            return null;
+        }
+    })
+}
 function insertImmunization(immunization){
     return db('child_immunizations')
     .insert(immunization, 'id')
