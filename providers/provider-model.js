@@ -27,10 +27,10 @@ function findById(id){
 }
 
 function getProvidersChildren(id){
-    return db('providers as p')
+    return db('providers')
     .where({ id })
-    .join('child_detail as cd', 'p.id', '=', 'cd.providerId')
-    .select('cd.firstName', 'cd.lastName', 'cd.DOB', 'cd.gender', 'cd.isPermission', 'cd.id', 'cd.comments')
+    .join('child_detail', 'providers.id', '=', 'cd.providerId')
+    .select('child_detail.firstName', 'child_detail.lastName', 'child_detail.DOB', 'child_detail.gender', 'child_detail.isPermission', 'child_detail.id', 'child_detail.comments')
     .then(provider => {
         if(provider){
             return provider;

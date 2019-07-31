@@ -22,16 +22,16 @@ router.get('/:id', async (req, res) => {
 router.get('/children/:id', async (req, res) => {
     const { id } = req.params;
     try{
-        const provider = await Providers.getProvidersChildren(id);
+        const children = await Providers.getProvidersChildren(id);
 
-        if(provider){
-            res.json(provider);
+        if(children){
+            res.json(children);
         }else{
             res.status(404).json({ message: 'Could not find provider with given id'})
         }
 
     }catch(err){
-        console.log(err)
+        console.log(err);
         res.status(500).json({ message: 'failed to get children for this provider'})
     }
 })
