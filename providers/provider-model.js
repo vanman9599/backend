@@ -29,7 +29,7 @@ function findById(id){
 function getProvidersChildren(id){
     return db('providers')
     .where({ id })
-    .innerJoin('child_detail', 'providers.id',  'cd.providerId')
+    .innerJoin('child_detail', 'providers.id',  'child_detail.providerId')
     .select('child_detail.firstName', 'child_detail.lastName', 'child_detail.DOB', 'child_detail.gender', 'child_detail.isPermission', 'child_detail.id', 'child_detail.comments')
     .then(provider => {
         if(provider){
