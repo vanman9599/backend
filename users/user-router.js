@@ -26,10 +26,10 @@ router.delete('/:id', async (req, res) => {
         if(deleted){
           res.json({ removed: deleted })
         }else{
-            res.status(404).json({ message: 'Could not find provider with given id'})
+            res.status(404).json({ message: 'Could not find user with given id'})
         }
     }catch(err){
-        res.status(500).json({ message: 'failed to delete provider'})
+        res.status(500).json({ message: 'failed to delete user'})
     }
 })
 
