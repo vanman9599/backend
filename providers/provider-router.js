@@ -31,7 +31,7 @@ router.get('/children/:id', async (req, res) => {
         }
 
     }catch(err){
-        
+        console.log(err)
         res.status(500).json({ message: 'failed to get children for this provider'})
     }
 })
