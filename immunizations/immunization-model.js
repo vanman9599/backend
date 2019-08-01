@@ -29,15 +29,16 @@ function findImmunizationsTaken(id){
 // AND i.id NOT IN (select immunizationId from child_immunizations)
 
 function getAllImmunizationIds(id){
-    return db('immunizations')
-    .where( { id }).select('id')
+    return db('child_immunizations')
+    .where( { id: id }).select('id')
 }
 
 function findMissingImmunizations(id){
     const query = getAllImmunizationIds(id);
-    return db('child_immunizations')
-    .whereNotIn('childId', query)
-       
+    return db('immunizations')
+    .whereNotIn('id', query)
+    
+    
 }
 
 // function getAllImmunizationIds(){
