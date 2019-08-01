@@ -42,6 +42,7 @@ router.post('/', async (req,res) => {
     
     try{
         const parent = await Parents.insert(data);
+
         res.status(201).json(parent)
     }catch(err){
         console.log('data', data);
@@ -52,16 +53,52 @@ router.post('/', async (req,res) => {
 
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
-    const changes = req.body;
+    const { username, email, firstName, lastName, address1, address2, city, state, zip, phone, comments  } = req.body;
+
+    const userObject = {
+        "username": username, 
+        "email": email
+    }
+
+    const parentObject = {
+        "firstName": firstName, 
+        "lastName": lastName, 
+        "address1": address1, 
+        "address2": address2,
+        "city": city, 
+        "state": state, 
+        "zip": zip, 
+        "phone": phone, 
+        "comments": comments, 
+        "userId": id
+    }
     try{
-        const parent = await Parents.findById(id); //TODO Implment this function
-        if(parent){
-            const updatedParent = await Parents.update(changes, id)
-            res.json(updatedParent);
-        }else{
-            res.status(404).json({ message: 'Could not find user with given Id'})
-        }
+         //TODO Implment this function
+        
+            const updatedParent = await Parents.update(parentObject, id)
+            const updatedUser = await Parents.updateUser(userObject, id)
+            const { username, email } = updatedUser;
+            const { firstName, lastName, address1, address2, city, state, zip, phone, comments } = updatedParent;
+            const returnObject = 
+            {  
+            "username": username, 
+                 "email": email, 
+                 "userId": id, 
+                 "firstName": firstName,
+                 "lastName": lastName,
+                 "address1": address1, 
+                 "address2": address2, 
+                 "city": city, 
+                 "state": state, 
+                 "zip": zip, 
+                 "phone": phone, 
+                 "comments": comments 
+
+            }
+            res.json(returnObject);
+        
     }catch(err){
+        console.log(err); 
         res.status(500).json({ message: 'failed to update user' })
     }
 })

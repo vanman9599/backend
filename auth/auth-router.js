@@ -22,7 +22,7 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-  let { username, password, userId } = req.body;
+  let { username, password } = req.body;
 
   Users.findBy({ username: username })
     .first()
@@ -34,10 +34,11 @@ router.post('/login', (req, res) => {
         res.status(200).json({
           message: `Welcome ${user.username}!`,
           token,
-          userId: userId
+          userId: user.id, 
+          role: user.role,
         });
       } else {
-        res.status(401).json({ message: 'Invalid Username/Password  ' });
+        res.status(401).json({ message: 'Already logged in?' });
       }
     })
     .catch(error => {
@@ -49,8 +50,7 @@ function generateToken(user) {
   const jwtPayload = {
     subject: user.id,
     username: user.username,
-    role: user.role,
-  };
+    };
 
   const jwtOptions = {
     expiresIn: '1d',

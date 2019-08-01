@@ -5,6 +5,7 @@ const providerRouter = require('../providers/provider-router.js');
 const staffRouter = require('../providers/staff-router.js');
 const childRouter = require('../child/child-router.js');
 const immunizationRouter = require('../immunizations/immunization-router.js');
+const restricted = require('../auth/restricted-middleware.js');
 const express = require('express')
 const helmet = require('helmet');
 const cors = require('cors')

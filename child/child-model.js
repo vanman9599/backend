@@ -10,7 +10,7 @@ module.exports = {
 
 function insert(child){
     return db('child_detail')
-    .insert(child)
+    .insert(child, 'id')
     .then(ch => {
         if(ch){
             return ch;

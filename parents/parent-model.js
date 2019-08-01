@@ -7,6 +7,7 @@ module.exports = {
  remove, 
  removeUser,
  findChildren,
+ updateUser,
 }
 // {
 //     username: "somone123" *required* (string), 
@@ -50,7 +51,7 @@ function findChildren(id){
     .where({ parentId: id })
     .join('parent_detail as pd', 'cd.parentId', '=', 'pd.id')
     .join('providers as p', 'p.id', '=', 'cd.providerid')
-    .select('p.name as providerName', 'cd.firstName', 'cd.lastName', 'cd.isPermission', 'cd.comments', 'cd.DOB', 'cd.gender')
+    .select('p.name as providerName', 'cd.firstName', 'cd.lastName', 'cd.isPermission', 'cd.comments', 'cd.DOB', 'cd.gender', 'cd.id', 'cd.parentId')
 }
 
 
@@ -92,13 +93,36 @@ function insert(parent){
         }
     })
 }
+
+//sends
+
+function getParentId(userId){
+    return db('parent_detail')
+    .where({ userId: userId })
+    .select('id')
+}
+
 function update(changes, id){
+    
     return db('parent_detail')
     .where({ userId: id })
     .update(changes)
     .then(parent => {
         if(parent){
             return parent;
+        }else{
+            return null;
+        }
+    })
+}
+
+function updateUser(changes, id){
+    return db('users')
+    .where({ id: id })
+    .update(changes)
+    .then(user => {
+        if(user){
+            return user;
         }else{
             return null;
         }

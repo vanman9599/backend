@@ -102,6 +102,19 @@ router.post('/', async (req,res) => {
     }
 })
 
+router.post('/insert', async (req,res) => {
+    const data = req.body;
+    
+    try{
+        const immun = await Immunizations.insertImmunization(data);
+        res.status(201).json(immun)
+    }catch(err){
+        console.log('data', data);
+        console.log("error", err);
+        res.status(500).json({ message: "Failed to insert immunization"})
+    }
+})
+
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
     const changes = req.body;
@@ -134,6 +147,24 @@ router.delete('/:id', async (req, res) => {
             res.status(404).json({ message: 'Could not find immunization with given id'})
         }
     }catch(err){
+        res.status(500).json({ message: 'failed to delete'})
+    }
+})
+
+router.delete('/childImmunizations/:id', async (req, res) => {
+    const { id } = req.params;
+    try{
+        const deleted = await Immunizations.removeChildImmunizations(id);
+        if(deleted){
+           
+                res.json({ removed: deleted })
+            }else{
+                res.status(500).json({ message: 'failed to delele immunization '})
+            }
+            
+       
+    }catch(err){
+        console.log(err);
         res.status(500).json({ message: 'failed to delete'})
     }
 })

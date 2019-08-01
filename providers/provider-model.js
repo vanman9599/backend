@@ -10,12 +10,39 @@ module.exports = {
  removeStaff,
  updateStaff, 
  removeUser,
+ getProvidersChildren,
+ findProviders,
  
 }
 
 function findById(id){
     return db('providers')
     .where({ id })
+    .then(provider => {
+        if(provider){
+            return provider;
+        }else{
+            return null;
+        }
+    })
+}
+
+function findProviders(){
+    return db('providers')
+    .then(provider => {
+        if(provider){
+            return provider;
+        }else{
+            return null;
+        }
+    })
+}
+
+function getProvidersChildren(id){
+    return db('child_detail')
+    .where({ providerId: id })
+    .join('providers', 'providers.id', '=', 'child_detail.providerId')
+    .select('child_detail.firstName', 'child_detail.providerId', 'child_detail.parentId', 'child_detail.lastName', 'child_detail.DOB', 'child_detail.gender', 'child_detail.isPermission', 'child_detail.id', 'child_detail.comments')
     .then(provider => {
         if(provider){
             return provider;
@@ -40,7 +67,7 @@ function remove(id){
 
 function insert(provider){
     return db('providers')
-    .insert(provider)
+    .insert(provider, 'id')
     .then(prt => {
         if(prt){
             return prt;

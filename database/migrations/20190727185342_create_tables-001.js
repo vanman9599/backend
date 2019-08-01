@@ -27,9 +27,11 @@ exports.up = function(knex) {
     .createTable('immunizations', tbl => {
         tbl.increments()
         tbl.text('name', 255).notNullable()
-        tbl.integer('monthsAge')
         tbl.text('description', 255)
+        tbl.integer('monthsAge').notNullable()
         tbl.integer('dose').notNullable()
+        tbl.text('comments', 255)
+        
     })
 
     .createTable('parent_detail', tbl => {
@@ -84,6 +86,8 @@ exports.up = function(knex) {
         
     })
 
+   
+
     
 };
 
@@ -98,4 +102,5 @@ exports.down = function(knex) {
     .dropTableIfExists('immunizations')
     .dropTableIfExists('child_immunizations')
     .dropTableIfExists('parent_detail')
+    
 };
