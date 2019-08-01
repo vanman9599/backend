@@ -11,12 +11,24 @@ module.exports = {
  updateStaff, 
  removeUser,
  getProvidersChildren,
+ findProviders,
  
 }
 
 function findById(id){
     return db('providers')
     .where({ id })
+    .then(provider => {
+        if(provider){
+            return provider;
+        }else{
+            return null;
+        }
+    })
+}
+
+function findProviders(){
+    return db('providers')
     .then(provider => {
         if(provider){
             return provider;
