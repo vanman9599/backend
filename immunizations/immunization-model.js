@@ -30,7 +30,7 @@ function findImmunizationsTaken(id){
 
 function getAllImmunizationIds(id){
     return db('child_immunizations')
-    .where( { childId: id }).select('id')
+    .where( { childId: id }).select('immunizationId')
 }
 
 function findMissingImmunizations(id){
