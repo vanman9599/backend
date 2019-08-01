@@ -22,7 +22,7 @@ function insert(child){
 
 function findById(id){
     return db('child_detail')
-    .where({ parentId: id })
+    .where({ id })
     .then(child => {
         if(child){
             return child;
