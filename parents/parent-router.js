@@ -53,7 +53,7 @@ router.post('/', async (req,res) => {
 
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
-    const { username, email, userId, firstName, lastName, address1, address2, city, state, zip, phone, comments  } = req.body;
+    const { username, email, firstName, lastName, address1, address2, city, state, zip, phone, comments  } = req.body;
 
     const userObject = {
         "username": username, 

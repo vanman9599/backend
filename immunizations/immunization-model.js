@@ -41,6 +41,21 @@ function findMissingImmunizations(id){
     
 }
 
+// function getAllImmunizationIds(){
+//     return db('immunizations')
+//     .select('id')
+// }
+
+// function findMissingImmunizations(id){
+//     const query = getAllImmunizationIds(id);
+//     return db('child_immunizations')
+//     .whereNotIn('immunizationId', query)
+    
+    
+// }
+
+
+
 function findImmunizations(){
     return db('immunizations')
     
@@ -76,7 +91,7 @@ function insert(immunization){
 
 
 function update(changes, id){
-    return db('immunizations')
+    return db('child_immunizations')
     .where({ id })
     .update(changes)
     .then(immun => {

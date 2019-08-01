@@ -42,7 +42,7 @@ function getProvidersChildren(id){
     return db('child_detail')
     .where({ providerId: id })
     .join('providers', 'providers.id', '=', 'child_detail.providerId')
-    .select('child_detail.firstName', 'child_detail.lastName', 'child_detail.DOB', 'child_detail.gender', 'child_detail.isPermission', 'child_detail.id', 'child_detail.comments')
+    .select('child_detail.firstName', 'child_detail.providerId', 'child_detail.parentId', 'child_detail.lastName', 'child_detail.DOB', 'child_detail.gender', 'child_detail.isPermission', 'child_detail.id', 'child_detail.comments')
     .then(provider => {
         if(provider){
             return provider;
