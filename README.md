@@ -101,9 +101,14 @@ _save the id to use later_
 *where 4 is the providerId*
 
 ### GET All Children of a Provider
-/api/providers/children/2
+#### /api/providers/children/2
 *where 2 above is providerId*
 *this is what is supposed to show up on providers homepage?*
+
+### GET ALL PROVIDERS
+#### /api/providers
+
+
 
 ### INSERT STAFF (a user who who represents a provider)
 #### api/staff
@@ -169,3 +174,4 @@ can help with this one*
 ### DELETE USER account
 #### /api/users/1
 *you will get back the number of records deleted, should always be 1*
+

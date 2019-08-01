@@ -7,6 +7,7 @@ module.exports = {
  remove, 
  removeUser,
  findChildren,
+ updateUser,
 }
 // {
 //     username: "somone123" *required* (string), 
@@ -102,13 +103,26 @@ function getParentId(userId){
 }
 
 function update(changes, id){
-    parentId = getParentId(id);
+    
     return db('parent_detail')
-    .where({ userId: parentId })
+    .where({ userId: id })
     .update(changes)
     .then(parent => {
         if(parent){
             return parent;
+        }else{
+            return null;
+        }
+    })
+}
+
+function updateUser(changes, id){
+    return db('users')
+    .where({ id: id })
+    .update(changes)
+    .then(user => {
+        if(user){
+            return user;
         }else{
             return null;
         }
